@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions — Joud Bitar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --charcoal:#1E1E1E;--off-white:#FAF7FA;--warm-neutral:#F1E8E2;
+      --sage:#AFC7AE;--blush:#E4C5B9;--sage-dark:#8aaa89;--sage-light:#d4e4d3;
+      --blush-light:#f5e8e2;--text-muted:#7a7269;--text-soft:#a09890;
+      --border:rgba(30,30,30,0.08);--max-w:1120px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Manrope',sans-serif;background:var(--off-white);color:var(--charcoal);line-height:1.6;overflow-x:hidden}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 40px}
+    .eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--text-soft)}
+    .eyebrow-sage{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-dark)}
+    .fade-in{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    .btn-primary{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--off-white);background:var(--charcoal);padding:14px 32px;text-decoration:none;border-radius:100px;border:1.5px solid var(--charcoal);transition:background .3s}
+    .btn-primary:hover{background:#333}
+    .btn-secondary{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal);background:transparent;padding:14px 32px;text-decoration:none;border-radius:100px;border:1.5px solid rgba(30,30,30,.22);transition:all .3s}
+    .btn-secondary:hover{background:var(--charcoal);color:var(--off-white);border-color:var(--charcoal)}
+    .btn-text{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal);text-decoration:none;transition:gap .25s}
+    .btn-text::after{content:'→';font-weight:400}
+    .btn-text:hover{gap:14px}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,250,.95);backdrop-filter:blur(16px);height:68px;border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--charcoal);text-decoration:none;letter-spacing:.02em}
+    .nav-links{display:flex;list-style:none;gap:2px}
+    .nav-links>li{position:relative}
+    .nav-links>li>a{font-size:11.5px;font-weight:400;letter-spacing:.03em;color:var(--charcoal);text-decoration:none;padding:8px 14px;display:flex;align-items:center;gap:5px;border-radius:7px;transition:background .2s}
+    .nav-links>li>a:hover,.nav-links>li>a.active{background:var(--warm-neutral)}
+    .nav-links>li>a .chev{width:8px;height:8px;border-right:1.2px solid currentColor;border-bottom:1.2px solid currentColor;transform:rotate(45deg) translateY(-1px);opacity:.45;transition:transform .2s}
+    .nav-links>li:hover>a .chev{transform:rotate(225deg) translateY(-2px)}
+    .dropdown{position:absolute;top:calc(100% + 8px);left:0;background:var(--off-white);border:1px solid var(--border);border-radius:12px;min-width:200px;padding:8px;opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 16px 48px rgba(30,30,30,.07)}
+    .nav-links>li:hover .dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+    .dropdown a{display:block;padding:9px 14px;font-size:12px;font-weight:400;color:var(--charcoal);text-decoration:none;border-radius:7px;transition:background .15s}
+    .dropdown a:hover{background:var(--warm-neutral)}
+    .nav-cta{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--off-white);background:var(--charcoal);padding:10px 22px;text-decoration:none;border-radius:100px;transition:background .25s}
+    .nav-cta:hover{background:var(--sage-dark)}
+    .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .nav-burger span{width:22px;height:1.5px;background:var(--charcoal);transition:all .3s}
+    .curve-divide{display:block;width:100%;overflow:hidden;line-height:0;margin-bottom:-2px}
+    .curve-divide svg{display:block;width:100%}
+    .section-off{background:var(--off-white);padding:80px 0}
+    .section-warm{background:var(--warm-neutral);padding:80px 0}
+    .section-dark{background:#1a1918;padding:80px 0;color:var(--off-white)}
+    .section-header{margin-bottom:48px}
+    .section-header .eyebrow,.section-header .eyebrow-sage{margin-bottom:14px;display:block}
+    .section-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:400;line-height:1.1}
+    .section-header h2 em{font-style:italic;color:var(--text-muted)}
+    .section-header p{font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.85;max-width:560px;margin-top:14px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--off-white);border:1px solid var(--border);border-radius:18px;padding:32px 28px;transition:border-color .2s}
+    .card:hover{border-color:var(--sage)}
+    .card-dark{background:rgba(250,247,250,.04);border:1px solid rgba(250,247,250,.07);border-radius:16px;padding:32px 28px}
+    .dot-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:16px}
+    .dot-list li{font-size:13.5px;font-weight:300;color:var(--text-muted);padding-left:18px;position:relative;line-height:1.6}
+    .dot-list li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--sage)}
+    .faq-list{display:flex;flex-direction:column;gap:0}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-item:first-child{border-top:1px solid var(--border)}
+    .faq-q{font-size:14px;font-weight:400;color:var(--charcoal);padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;user-select:none}
+    .faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--text-soft);flex-shrink:0;transition:transform .3s}
+    .faq-item.open .faq-q::after{transform:rotate(45deg)}
+    .faq-a{font-size:13.5px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+    .faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
+    .page-hero{padding-top:68px;background:var(--warm-neutral);position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(228,197,185,.4) 0%,transparent 70%);pointer-events:none}
+    .page-hero-inner{max-width:var(--max-w);margin:0 auto;padding:72px 40px 80px}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,4.5vw,68px);font-weight:300;line-height:1.0;letter-spacing:-.01em;margin-bottom:20px}
+    .page-hero h1 em{font-style:italic;color:var(--sage-dark)}
+    .page-hero-sub{font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.85;max-width:620px;margin-bottom:32px}
+    .cta-band{background:var(--sage);padding:72px 0;position:relative;overflow:hidden}
+    .cta-inner{max-width:var(--max-w);margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+    .cta-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,40px);font-weight:400;line-height:1.15;color:var(--charcoal);margin-bottom:8px}
+    .cta-left p{font-size:13.5px;font-weight:300;color:rgba(30,30,30,.65);max-width:380px;line-height:1.8}
+    .cta-btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+    .btn-dark{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--off-white);background:var(--charcoal);padding:14px 32px;border-radius:100px;text-decoration:none;border:1.5px solid var(--charcoal);transition:background .3s}
+    .btn-dark:hover{background:#333}
+    .btn-outline-dark{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal);background:transparent;padding:14px 32px;border-radius:100px;text-decoration:none;border:1.5px solid rgba(30,30,30,.28);transition:all .3s}
+    .btn-outline-dark:hover{background:var(--charcoal);color:var(--off-white);border-color:var(--charcoal)}
+    footer{background:var(--charcoal);padding:48px 0 36px}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;padding:0 40px}
+    .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:52px;padding-bottom:52px;border-bottom:1px solid rgba(250,247,250,.07)}
+    .footer-name{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:300;color:var(--off-white);margin-bottom:10px}
+    .footer-desc{font-size:12.5px;font-weight:300;line-height:1.8;max-width:220px;color:rgba(250,247,250,.38)}
+    .footer-col-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,250,.65);margin-bottom:18px}
+    .footer-col a{display:block;font-size:12.5px;font-weight:300;color:rgba(250,247,250,.38);text-decoration:none;margin-bottom:10px;transition:color .2s}
+    .footer-col a:hover{color:var(--off-white)}
+    .footer-bottom{padding-top:28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .footer-copy{font-size:11.5px;font-weight:300;color:rgba(250,247,250,.28)}
+    .footer-socials{display:flex;gap:10px}
+    .social-icon{width:34px;height:34px;border-radius:50%;border:1px solid rgba(250,247,250,.15);display:flex;align-items:center;justify-content:center;color:rgba(250,247,250,.4);text-decoration:none;transition:border-color .2s,color .2s}
+    .social-icon:hover{border-color:var(--sage);color:var(--sage)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:11px;font-weight:300;color:rgba(250,247,250,.28);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--off-white)}
+    .mobile-nav{display:none;position:fixed;inset:0;background:var(--off-white);z-index:99;padding:88px 40px 48px;flex-direction:column;overflow-y:auto}
+    .mobile-nav.open{display:flex}
+    .mobile-nav>a{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--charcoal);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);display:block}
+    .mobile-sub a{display:block;font-size:13px;font-weight:300;color:var(--text-muted);padding:7px 0 7px 20px;text-decoration:none}
+    @media(max-width:1024px){.three-col{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr;gap:36px}}
+    @media(max-width:768px){.nav-links,.nav-cta{display:none}.nav-burger{display:flex}.two-col{grid-template-columns:1fr;gap:36px}.three-col{grid-template-columns:1fr}.cta-inner{flex-direction:column;align-items:flex-start;gap:28px}.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}.container,.page-hero-inner,.cta-inner{padding-left:24px;padding-right:24px}}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Joud Bitar</a>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="mindful-general.html">Mindful Eating &amp; Nutrition <span class="chev"></span></a>
+          <div class="dropdown">
+            <a href="mindful-general.html">Mindful by Joud</a>
+            <a href="mindful-group.html">Group Programs</a>
+            <a href="mindful-11.html">1:1</a>
+            <a href="mindful-courses.html">Self-Paced Program</a>
+          </div>
+        </li>
+        <li>
+          <a href="strength-general.html">Strength &amp; Fitness <span class="chev"></span></a>
+          <div class="dropdown">
+            <a href="strength-general.html">The Approach</a>
+            <a href="strength-workshops.html">Workshops &amp; Calendar</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Resources <span class="chev"></span></a>
+          <div class="dropdown">
+            <a href="resources-articles.html">Articles</a>
+            <a href="resources-guides.html">Guides &amp; Tools</a>
+            <a href="resources-shop.html">Shop</a>
+          </div>
+        </li>
+        <li>
+          <a href="contact.html">Contact <span class="chev"></span></a>
+          <div class="dropdown">
+            <a href="faq.html">FAQ</a>
+          </div>
+        </li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Work With Me</a>
+      <button class="nav-burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="about.html">About</a>
+    <a href="mindful-general.html">Mindful Eating &amp; Nutrition</a>
+    <div class="mobile-sub">
+      <a href="mindful-general.html">Mindful by Joud</a>
+      <a href="mindful-group.html">Group Programs</a>
+      <a href="mindful-11.html">1:1</a>
+      <a href="mindful-courses.html">Self-Paced Program</a>
+    </div>
+    <a href="strength-general.html">Strength &amp; Fitness</a>
+    <div class="mobile-sub">
+      <a href="strength-general.html">The Approach</a>
+      <a href="strength-workshops.html">Workshops &amp; Calendar</a>
+    </div>
+    <a href="#">Resources</a>
+    <div class="mobile-sub">
+      <a href="resources-articles.html">Articles</a>
+      <a href="resources-guides.html">Guides &amp; Tools</a>
+      <a href="resources-shop.html">Shop</a>
+    </div>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-sub"><a href="faq.html">FAQ</a></div>
+    <a href="contact.html" style="margin-top:28px;text-align:center;display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#FAF7FA;background:#1E1E1E;padding:14px 32px;border-radius:100px;text-decoration:none;">Work With Me</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero-inner fade-in">
+      <span class="eyebrow" style="display:block;margin-bottom:16px;">Legal</span>
+      <h1>Terms &amp; <em>Conditions</em></h1>
+      <p class="page-hero-sub">Please read these terms carefully before enrolling in any program or booking a session with Joud Bitar.</p>
+      <p style="font-size:12px;font-weight:300;color:var(--text-soft);">Last updated: March 2026</p>
+    </div>
+  </section>
+  <div class="curve-divide" style="background:var(--warm-neutral);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C480,64 960,64 1440,0 L1440,64 L0,64 Z" fill="#FAF7FA"/></svg>
+  </div>
+  <section class="section-off">
+    <div class="container">
+      <div style="max-width:720px;margin:0 auto;" class="fade-in">
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">1. Acceptance of Terms</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">By enrolling in any program, booking a session, or accessing content through joudbitar.co, you agree to be bound by these Terms and Conditions. If you do not agree, do not proceed with enrollment or use of services.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">2. Services</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">Joud Bitar offers the following services: group mindful eating programs, 1:1 nutrition coaching, and access to digital content. All services are educational and lifestyle-based in nature. They do not constitute medical advice, diagnosis, or treatment.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">3. Payment &amp; Enrollment</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">Full payment is required to secure enrollment in any group program or session package. Pricing is listed in Jordanian Dinars (JD). Payment confirms your spot in the relevant cohort or session.</p>
+        </div>
+
+        <div style="margin-bottom:48px;background:var(--warm-neutral);border-radius:16px;padding:32px 36px;border-left:3px solid var(--sage);">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">4. No Refund Policy</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">All payments are final. <strong style="color:var(--charcoal);font-weight:600;">No refunds will be issued</strong> once enrollment is confirmed, regardless of whether the program has commenced.</p>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">This policy exists because program preparation — including materials, scheduling, group configuration, and content access — begins immediately upon enrollment.</p>
+        </div>
+
+        <div style="margin-bottom:48px;background:var(--warm-neutral);border-radius:16px;padding:32px 36px;border-left:3px solid var(--sage);">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">5. No Transfers Policy</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">Enrollment in a group program cohort is <strong style="color:var(--charcoal);font-weight:600;">non-transferable</strong> — it cannot be moved to a different cohort date, nor transferred to another individual.</p>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">This applies to all group program cohorts. If you are unable to attend a cohort you have enrolled in, your spot will not be held for a future date and cannot be given to another person.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">6. Program Participation</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">Full participation and adherence to the program structure is your responsibility. Results depend on your engagement, consistency, and implementation. Outcomes are not guaranteed.</p>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">Results vary based on individual adherence, lifestyle, and starting point. The practitioner provides guidance — the client provides commitment.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">7. Health Disclaimer</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;margin-bottom:12px;">All programs are educational in nature and are not a substitute for professional medical advice. If you have a medical condition, please consult your physician before enrolling. Joud Bitar is not liable for any adverse outcomes resulting from participation in any program.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">8. Intellectual Property</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">All content, materials, videos, guidelines, and resources provided through joudbitar.co and associated programs are the intellectual property of Joud Bitar. Sharing, reproducing, or distributing any program content without written permission is strictly prohibited.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">9. WhatsApp &amp; Communication</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">By enrolling in a group program, you consent to being added to a WhatsApp group for the duration of the cohort. Content shared in these groups is private and must not be redistributed.</p>
+        </div>
+
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:16px;">10. Governing Law</h2>
+          <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;">These terms are governed by the laws of the Hashemite Kingdom of Jordan. Any disputes shall be resolved through good faith discussion first. If unresolved, disputes may be submitted to the appropriate jurisdiction in Jordan.</p>
+        </div>
+
+        <div style="padding:24px 0;border-top:1px solid var(--border);">
+          <p style="font-size:13px;font-weight:300;color:var(--text-soft);line-height:1.8;">For questions regarding these terms, contact: <a href="mailto:info@joudbitar.co" style="color:var(--charcoal);font-weight:400;">info@joudbitar.co</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <p class="footer-name">Joud Bitar</p>
+          <p class="footer-desc">Mindful eating, functional nutrition, and strength-based movement for women.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Nutrition</p>
+          <a href="mindful-general.html">Mindful by Joud</a>
+          <a href="mindful-group.html">Group Programs</a>
+          <a href="mindful-11.html">1:1</a>
+          <a href="mindful-courses.html">Self-Paced Program</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Movement</p>
+          <a href="strength-general.html">The Approach</a>
+          <a href="strength-workshops.html">Workshops</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">More</p>
+          <a href="about.html">About Joud</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Joud Bitar. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e,i) => {
+        if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }
+      });
+    },{threshold:0.08});
+    faders.forEach(el=>obs.observe(el));
+    document.getElementById('burgerBtn').addEventListener('click',()=>{
+      const m=document.getElementById('mobileNav');
+      m.classList.toggle('open');
+      document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+    });
+    document.querySelectorAll('.faq-q').forEach(q=>{
+      q.addEventListener('click',()=>{
+        const item=q.parentElement;
+        const wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+        if(!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
