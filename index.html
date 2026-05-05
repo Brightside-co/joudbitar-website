@@ -116,10 +116,10 @@
       position: absolute; top: calc(100% + 8px); left: 0; background: var(--off-white);
       border: 1px solid var(--border); border-radius: 12px; min-width: 200px; padding: 8px;
       opacity: 0; pointer-events: none; transform: translateY(6px);
-      transition: opacity 0.2s, transform 0.2s; z-index: 200;
+      transition: opacity 0.2s, transform 0.2s; transition-delay: 0.3s; z-index: 200;
       box-shadow: 0 16px 48px rgba(30,30,30,0.07);
     }
-    .nav-links > li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .nav-links > li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); transition-delay: 0s; }
     /* Gap bridge so dropdown doesn't vanish when moving cursor from link to dropdown */
     .nav-links > li > a::after { content: ''; display: block; position: absolute; height: 16px; left: 0; right: 0; bottom: -16px; }
     .nav-links > li .dropdown { margin-top: 8px; }
