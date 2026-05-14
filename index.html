@@ -86,7 +86,7 @@
 
     /* ══════════ NAV ══════════ */
     nav {
-      position: fixed; top: 40px; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(250,247,250,0.95); backdrop-filter: blur(16px);
       height: 68px; border-bottom: 1px solid var(--border);
     }
@@ -140,7 +140,7 @@
     /* ══════════ HERO ══════════ */
     /* Soft warm background, photo floats naturally */
     .hero {
-      padding-top: 108px;
+      padding-top: 68px;
       min-height: 100vh;
       background: var(--blush-light);
       position: relative;
@@ -798,39 +798,62 @@
     }
     .social-icon:hover { border-color: var(--sage); color: var(--sage); background: rgba(175,199,174,0.08); }
 
-    /* ══════════ TEMP BANNER — REMOVE AFTER JUNE 14 ══════════ */
-    .promo-banner {
-      background: var(--sage-dark);
-      color: var(--off-white);
-      text-align: center;
-      padding: 10px 48px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 102;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* ══════════ TEMP POPUP — REMOVE AFTER JUNE 14 ══════════ */
+    .promo-overlay {
+      position: fixed; inset: 0; background: rgba(30,30,30,0.55);
+      z-index: 200; display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      animation: fadeOverlay 0.4s ease;
     }
-    .promo-banner a {
-      color: var(--off-white);
-      font-weight: 700;
-      text-decoration: underline;
-      margin-left: 10px;
-      white-space: nowrap;
+    @keyframes fadeOverlay { from { opacity: 0; } to { opacity: 1; } }
+    .promo-popup {
+      background: var(--off-white); border-radius: 20px;
+      max-width: 480px; width: 100%; padding: 48px 44px;
+      position: relative; text-align: center;
+      animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
     }
-    .promo-banner a:hover { opacity: 0.8; }
-    .promo-banner-close {
-      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; color: var(--off-white);
-      font-size: 18px; cursor: pointer; opacity: 0.7; line-height: 1;
-      padding: 4px 8px;
+    @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .promo-popup-eyebrow {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--sage-dark); margin-bottom: 16px; display: block;
     }
-    .promo-banner-close:hover { opacity: 1; }
-    /* ══════════ END TEMP BANNER ══════════ */
+    .promo-popup h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+      line-height: 1.1; margin-bottom: 12px; color: var(--charcoal);
+    }
+    .promo-popup h2 em { font-style: italic; color: var(--sage-dark); }
+    .promo-popup p {
+      font-size: 13.5px; font-weight: 300; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 28px;
+    }
+    .promo-popup-dates {
+      display: inline-block; background: var(--warm-neutral);
+      border-radius: 100px; padding: 8px 20px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--charcoal);
+      margin-bottom: 28px;
+    }
+    .promo-popup-cta {
+      display: block; font-family: 'Manrope', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--off-white); background: var(--charcoal);
+      padding: 14px 36px; border-radius: 100px; text-decoration: none;
+      transition: background 0.3s; margin-bottom: 14px;
+    }
+    .promo-popup-cta:hover { background: var(--sage-dark); }
+    .promo-popup-dismiss {
+      display: block; font-size: 11px; font-weight: 400; color: var(--text-soft);
+      cursor: pointer; background: none; border: none; font-family: 'Manrope', sans-serif;
+      letter-spacing: 0.05em; transition: color 0.2s; margin: 0 auto;
+    }
+    .promo-popup-dismiss:hover { color: var(--charcoal); }
+    .promo-popup-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; font-size: 20px; cursor: pointer;
+      color: var(--text-soft); line-height: 1; padding: 4px 8px;
+    }
+    .promo-popup-close:hover { color: var(--charcoal); }
+    /* ══════════ END TEMP POPUP ══════════ */
 
     /* ══════════ MOBILE NAV ══════════ */
     .mobile-nav {
@@ -931,13 +954,19 @@
     </div>
   </nav>
 
-  <!-- ═══ TEMP BANNER — DELETE THIS BLOCK AFTER JUNE 14 ═══ -->
-  <div class="promo-banner" id="promoBanner">
-    🌿 2-Week Challenge — May 31 to June 14
-    <a href="https://form.jotform.com/261302412397451" target="_blank">Register Now</a>
-    <button class="promo-banner-close" onclick="document.getElementById('promoBanner').style.display='none'" aria-label="Close">×</button>
+  <!-- ═══ TEMP POPUP — DELETE THIS BLOCK AFTER JUNE 14 ═══ -->
+  <div class="promo-overlay" id="promoOverlay">
+    <div class="promo-popup">
+      <button class="promo-popup-close" onclick="closePromo()" aria-label="Close">×</button>
+      <span class="promo-popup-eyebrow">🌿 Limited Spots</span>
+      <h2>2-Week<br><em>Challenge</em></h2>
+      <div class="promo-popup-dates">May 31 — June 14</div>
+      <p>A focused two-week program to reset your habits, reconnect with your body, and build consistency that lasts.</p>
+      <a href="https://form.jotform.com/261302412397451" target="_blank" class="promo-popup-cta">Register Now</a>
+      <button class="promo-popup-dismiss" onclick="closePromo()">No thanks, continue to site</button>
+    </div>
   </div>
-  <!-- ═══ END TEMP BANNER ═══ -->
+  <!-- ═══ END TEMP POPUP ═══ -->
 
   <!-- MOBILE NAV -->
   <div class="mobile-nav" id="mobileNav">
@@ -1540,6 +1569,20 @@
     // Init
     render(0);
     resetAuto();
+  // ═══ TEMP POPUP — DELETE AFTER JUNE 14 ═══
+  function closePromo() {
+    document.getElementById('promoOverlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  // Show popup on load, lock scroll behind it
+  window.addEventListener('load', () => {
+    document.body.style.overflow = 'hidden';
+  });
+  // Close on overlay click (outside popup)
+  document.getElementById('promoOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePromo();
+  });
+  // ═══ END TEMP POPUP ═══
   </script>
 </body>
 </html>
