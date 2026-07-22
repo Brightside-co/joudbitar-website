@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Self-Paced Program — Joud Bitar</title>
+  <title>Self-Paced Programs — Joud Bitar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -30,8 +30,13 @@
       color: var(--charcoal);
       line-height: 1.6;
       overflow-x: hidden;
-      min-height: 100vh;
     }
+
+    .fade-in {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* NAV */
     nav {
@@ -55,8 +60,6 @@
       border-radius: 7px; transition: background 0.2s;
     }
     .nav-links > li > a:hover { background: var(--warm-neutral); }
-    .nav-links > li > a[onclick] { cursor: default; }
-    .nav-links > li > a[onclick]:hover { background: transparent; }
     .nav-links > li > a .chev {
       width: 8px; height: 8px; border-right: 1.2px solid currentColor; border-bottom: 1.2px solid currentColor;
       transform: rotate(45deg) translateY(-1px); opacity: 0.45; transition: transform 0.2s;
@@ -84,95 +87,182 @@
     .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-burger span { width: 22px; height: 1.5px; background: var(--charcoal); transition: all 0.3s; }
 
-    /* COMING SOON BODY */
-    .cs-wrap {
-      min-height: 100vh;
+    /* PAGE HEADER */
+    .page-header {
       padding-top: 68px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       background: var(--warm-neutral);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding-left: 40px;
-      padding-right: 40px;
+      position: relative; overflow: hidden;
     }
-
-    /* soft background circles */
-    .cs-wrap::before {
+    .page-header::before {
       content: '';
-      position: absolute; top: -10%; left: -10%;
-      width: 50vw; height: 50vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(228,197,185,0.3) 0%, transparent 65%);
+      position: absolute; top: -80px; right: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(228,197,185,0.4) 0%, transparent 70%);
       pointer-events: none;
     }
-    .cs-wrap::after {
-      content: '';
-      position: absolute; bottom: -10%; right: -5%;
-      width: 40vw; height: 40vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(175,199,174,0.2) 0%, transparent 65%);
-      pointer-events: none;
+    .page-header-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 72px 40px 80px;
     }
-
-    .cs-inner {
-      position: relative; z-index: 1;
-      max-width: 560px;
-    }
-
-    .cs-eyebrow {
+    .eyebrow {
       font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--text-soft);
-      margin-bottom: 24px; display: block;
+      text-transform: uppercase; color: var(--text-soft); margin-bottom: 16px; display: block;
     }
-
-    .cs-title {
+    .page-header h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(42px, 5vw, 68px); font-weight: 300;
+      font-size: clamp(44px, 5vw, 72px); font-weight: 300;
       line-height: 1.0; letter-spacing: -0.01em;
-      margin-bottom: 20px;
     }
-    .cs-title em { font-style: italic; color: var(--sage-dark); }
-
-    .cs-sub {
+    .page-header h1 em { font-style: italic; color: var(--sage-dark); }
+    .page-header-sub {
       font-size: 14px; font-weight: 300; color: var(--text-muted);
-      line-height: 1.85; margin-bottom: 44px;
-      max-width: 420px; margin-left: auto; margin-right: auto;
+      line-height: 1.85; max-width: 480px; margin-top: 20px;
     }
 
-    .cs-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--off-white); border: 1px solid var(--border);
-      border-radius: 100px; padding: 10px 20px;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--text-muted);
-      margin-bottom: 48px;
+    /* CURVE */
+    .curve-divide { display: block; width: 100%; overflow: hidden; line-height: 0; margin-bottom: -2px; }
+    .curve-divide svg { display: block; width: 100%; }
+
+    /* PROGRAMS SECTION */
+    .programs {
+      background: var(--off-white);
+      padding: 80px 0 100px;
     }
-    .cs-pill-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--sage);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.7); }
+    .programs-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
     }
 
-    .cs-divider {
-      width: 40px; height: 1px; background: var(--sage);
-      margin: 0 auto 40px;
+    /* PROGRAM CARD */
+    .program-card {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
+      align-items: start; padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .program-card:first-child { padding-top: 0; }
+    .program-card:last-child { border-bottom: none; }
+
+    .program-meta {}
+    .program-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage-dark); margin-bottom: 16px; display: block;
+    }
+    .program-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3vw, 44px); font-weight: 300;
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    .program-title em { font-style: italic; color: var(--text-muted); }
+    .program-desc {
+      font-size: 14px; font-weight: 300; color: var(--text-muted);
+      line-height: 1.9; margin-bottom: 28px;
+    }
+    .program-specs {
+      display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .program-spec {}
+    .program-spec-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-soft); margin-bottom: 4px;
+    }
+    .program-spec-value {
+      font-size: 13px; font-weight: 400; color: var(--charcoal);
     }
 
-    .cs-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--charcoal);
-      text-decoration: none; transition: gap 0.2s;
+    .program-price-row {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
     }
-    .cs-back::before { content: '←'; font-weight: 400; }
-    .cs-back:hover { gap: 14px; }
+    .program-price {
+      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+      color: var(--charcoal);
+    }
+    .program-price span { font-size: 16px; font-family: 'Manrope', sans-serif; font-weight: 400; }
+
+    .btn-primary {
+      display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--off-white); background: var(--charcoal);
+      padding: 14px 32px; text-decoration: none; border-radius: 100px;
+      border: 1.5px solid var(--charcoal); transition: background 0.3s, border-color 0.3s;
+    }
+    .btn-primary:hover { background: var(--sage-dark); border-color: var(--sage-dark); }
+
+    /* Right side — what's included teaser */
+    .program-details {}
+    .program-what-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text-soft); margin-bottom: 20px;
+    }
+    .program-includes {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .program-includes li {
+      font-size: 13.5px; font-weight: 300; color: var(--charcoal);
+      padding-left: 18px; position: relative; line-height: 1.5;
+    }
+    .program-includes li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--sage);
+    }
+
+    .program-differentiator {
+      background: var(--warm-neutral); border-radius: 14px;
+      padding: 24px 28px;
+    }
+    .program-differentiator-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage-dark); margin-bottom: 10px;
+    }
+    .program-differentiator p {
+      font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.8;
+    }
+
+    /* POLICY STRIP */
+    .policy-strip {
+      background: var(--warm-neutral);
+      padding: 40px 0;
+    }
+    .policy-strip-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+      display: flex; gap: 48px; flex-wrap: wrap; align-items: start;
+    }
+    .policy-strip-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text-soft);
+      margin-bottom: 14px; white-space: nowrap;
+    }
+    .policy-list {
+      list-style: none; display: flex; flex-direction: column; gap: 7px;
+    }
+    .policy-list li {
+      font-size: 12px; font-weight: 300; color: var(--text-muted);
+      padding-left: 14px; position: relative;
+    }
+    .policy-list li::before { content: '–'; position: absolute; left: 0; color: var(--sage-dark); }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); padding: 48px 0 36px; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 52px;
+      padding-bottom: 52px; border-bottom: 1px solid rgba(250,247,250,0.07);
+    }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: var(--off-white); margin-bottom: 10px; }
+    .footer-desc { font-size: 12.5px; font-weight: 300; line-height: 1.8; max-width: 220px; color: rgba(250,247,250,0.38); }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,247,250,0.65); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 12.5px; font-weight: 300; color: rgba(250,247,250,0.38); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--off-white); }
+    .footer-bottom { padding-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-copy { font-size: 11.5px; font-weight: 300; color: rgba(250,247,250,0.28); }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-icon {
+      width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(250,247,250,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(250,247,250,0.4); text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-icon:hover { border-color: var(--sage); color: var(--sage); background: rgba(175,199,174,0.08); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 11px; font-weight: 300; color: rgba(250,247,250,0.28); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--off-white); }
 
     /* MOBILE NAV */
     .mobile-nav {
@@ -193,7 +283,12 @@
     @media (max-width: 768px) {
       .nav-links, .nav-cta { display: none; }
       .nav-burger { display: flex; }
-      .cs-wrap { padding-left: 24px; padding-right: 24px; }
+      .page-header-inner { padding: 52px 24px 60px; }
+      .programs-inner { padding: 0 24px; }
+      .program-card { grid-template-columns: 1fr; gap: 40px; }
+      .policy-strip-inner { padding: 0 24px; flex-direction: column; gap: 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -265,28 +360,173 @@
       <a href="resources-shop.html">Shop</a>
     </div>
     <a href="contact.html">Contact</a>
-    <div class="mobile-sub">
-      <a href="faq.html">FAQ</a>
-    </div>
+    <div class="mobile-sub"><a href="faq.html">FAQ</a></div>
     <a href="contact.html" style="margin-top:28px;text-align:center;display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--off-white);background:var(--charcoal);padding:14px 32px;border-radius:100px;text-decoration:none;">Work With Me</a>
   </div>
 
-  <!-- COMING SOON -->
-  <div class="cs-wrap">
-    <div class="cs-inner">
-      <span class="cs-eyebrow">Self-Paced Program</span>
-      <h1 class="cs-title">Self-Paced <em>Program</em></h1>
-      <div class="cs-pill">
-        <span class="cs-pill-dot"></span>
-        Coming Soon
-      </div>
-      <p class="cs-sub">Structured learning at your own pace. Joud is currently developing a series of self-paced courses covering mindful eating, functional nutrition, and hormonal health. Check back soon.</p>
-      <div class="cs-divider"></div>
-      <a href="mindful-group.html" class="cs-back">Back to Group Programs</a>
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="page-header-inner fade-in">
+      <span class="eyebrow">Self-Paced Programs</span>
+      <h1>Learn at your own<br><em>pace.</em></h1>
+      <p class="page-header-sub">Structured programs you can follow independently, designed to build real habits around nutrition, movement, and body awareness.</p>
     </div>
+  </section>
+
+  <!-- curve -->
+  <div class="curve-divide" style="background:var(--warm-neutral);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C480,64 960,64 1440,0 L1440,64 L0,64 Z" fill="#FAF7FA"/>
+    </svg>
   </div>
 
+  <!-- PROGRAMS -->
+  <section class="programs">
+    <div class="programs-inner">
+
+      <!-- PROGRAM 1: 2-Week Challenge -->
+      <div class="program-card fade-in">
+        <div class="program-meta">
+          <span class="program-tag">Self-Paced · Mindful Eating</span>
+          <h2 class="program-title">2-Week<br><em>Challenge</em></h2>
+          <p class="program-desc">A self-led reset that uses mindful eating and two science-backed physiological stressors to work at the root — not the surface. No calorie counting. No restriction.</p>
+          <div class="program-specs">
+            <div class="program-spec">
+              <p class="program-spec-label">Duration</p>
+              <p class="program-spec-value">14 days</p>
+            </div>
+            <div class="program-spec">
+              <p class="program-spec-label">Format</p>
+              <p class="program-spec-value">At home, self-led</p>
+            </div>
+            <div class="program-spec">
+              <p class="program-spec-label">Guide delivered</p>
+              <p class="program-spec-value">After payment</p>
+            </div>
+          </div>
+          <div class="program-price-row">
+            <p class="program-price"><span>AED</span> 340</p>
+            <a href="https://form.jotform.com/261302412397451" target="_blank" class="btn-primary">Register Now</a>
+          </div>
+        </div>
+
+        <div class="program-details">
+          <p class="program-what-label">What's included</p>
+          <ul class="program-includes">
+            <li>A comprehensive PDF guide covering your daily routine, meal structure, and recovery rituals</li>
+            <li>Two physiological stressors rooted in science — one targets toxic load, one resensitizes leptin</li>
+            <li>Daily menus for both weeks, with a clear food reference list</li>
+            <li>A printable 14-day tracker</li>
+          </ul>
+          <div class="program-differentiator">
+            <p class="program-differentiator-label">What makes this different</p>
+            <p>This is a self-paced program. Once you register and submit payment, you'll have everything you need to get started. Two weeks. Real habits. A reset that actually sticks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: More programs coming -->
+      <div class="program-card fade-in">
+        <div class="program-meta">
+          <span class="program-tag">Coming Soon</span>
+          <h2 class="program-title">More programs<br><em>on the way.</em></h2>
+           <p class="program-desc">New self-paced programs covering hormonal health, functional nutrition, and mindful eating fundamentals are in development.</p>
+        </div>
+        <div class="program-details" style="display:flex;align-items:center;">
+          <p style="font-size:13px;font-weight:300;color:var(--text-soft);line-height:1.8;">Check back soon or follow <a href="https://www.instagram.com/inhalejo/" target="_blank" style="color:var(--charcoal);font-weight:400;">@joudbitar</a> for updates.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POLICY STRIP -->
+  <div class="curve-divide" style="background:var(--off-white);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,64 C480,0 960,0 1440,64 L1440,64 L0,64 Z" fill="#F1E8E2"/>
+    </svg>
+  </div>
+  <div class="policy-strip">
+    <div class="policy-strip-inner fade-in">
+      <p class="policy-strip-title">Registration &amp; Payment Policy</p>
+      <ul class="policy-list">
+        <li>Registration is confirmed once the form and payment are both complete</li>
+        <li>Registrations via WhatsApp or informal channels will not be accepted</li>
+        <li>All payments are non-refundable</li>
+        <li>Registrations are non-transferable to another person or cohort</li>
+        <li>The program guide is recieved after payment is confirmed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="curve-divide" style="background:var(--warm-neutral);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,64 C480,0 960,0 1440,64 L1440,64 L0,64 Z" fill="#1E1E1E"/>
+    </svg>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <p class="footer-name">Joud Bitar</p>
+          <p class="footer-desc">Mindful eating, functional nutrition, and strength-based movement for women.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Nutrition</p>
+          <a href="mindful-general.html">Mindful by Joud</a>
+          <a href="mindful-group.html">Group Programs</a>
+          <a href="mindful-11.html">1:1</a>
+          <a href="mindful-courses.html">Self-Paced Program</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Movement</p>
+          <a href="strength-general.html">The Approach</a>
+          <a href="strength-workshops.html">Workshops</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">More</p>
+          <a href="about.html">About Joud</a>
+          <a href="resources-articles.html">Articles</a>
+          <a href="resources-shop.html">Shop</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Joud Bitar. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/inhalejo/" target="_blank" class="social-icon" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/p/Inhale-100064740847079/" target="_blank" class="social-icon" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    faders.forEach(el => obs.observe(el));
+
     document.getElementById('burgerBtn').addEventListener('click', () => {
       const m = document.getElementById('mobileNav');
       m.classList.toggle('open');
