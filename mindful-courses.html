@@ -405,7 +405,7 @@
             </div>
           </div>
           <div class="program-price-row">
-            <p class="program-price"><span>AED</span> 340</p>
+            <p class="program-price" data-aed="340">AED 340</p>
             <a href="https://form.jotform.com/261302412397451" target="_blank" class="btn-primary">Register Now</a>
           </div>
         </div>
@@ -533,5 +533,77 @@
       document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
     });
   </script>
+
+  <script>
+  /* ── CURRENCY SWITCHER ── */
+  (function() {
+    var RATES = {
+      'AED': { rate: 1,        sym: 'AED' },
+      'JOD': { rate: 0.1024,   sym: 'JD'  },
+      'USD': { rate: 0.2723,   sym: '$'   },
+      'EUR': { rate: 0.2511,   sym: '€'   },
+      'GBP': { rate: 0.2149,   sym: '£'   },
+      'SAR': { rate: 1.0206,   sym: 'SAR' },
+      'KWD': { rate: 0.0836,   sym: 'KWD' },
+      'BHD': { rate: 0.1025,   sym: 'BHD' },
+      'QAR': { rate: 0.9912,   sym: 'QAR' },
+      'OMR': { rate: 0.1047,   sym: 'OMR' },
+      'CAD': { rate: 0.3755,   sym: 'CA$' },
+      'AUD': { rate: 0.4131,   sym: 'A$'  }
+    };
+    var COUNTRY_MAP = {
+      'AE':'AED','JO':'JOD','US':'USD','GB':'GBP','SA':'SAR','KW':'KWD',
+      'BH':'BHD','QA':'QAR','OM':'OMR','CA':'CAD','AU':'AUD',
+      'DE':'EUR','FR':'EUR','IT':'EUR','ES':'EUR','NL':'EUR','BE':'EUR',
+      'PT':'EUR','AT':'EUR','FI':'EUR','GR':'EUR','IE':'EUR','LU':'EUR',
+      'MT':'EUR','CY':'EUR','SK':'EUR','SI':'EUR','EE':'EUR','LV':'EUR',
+      'LT':'EUR','HR':'EUR'
+    };
+    function fmt(aed, cur) {
+      var r = RATES[cur]; var v = Math.round(aed * r.rate);
+      return r.sym + ' ' + v.toLocaleString();
+    }
+    function updateAll(cur) {
+      document.querySelectorAll('[data-aed]').forEach(function(el) {
+        el.textContent = fmt(parseFloat(el.getAttribute('data-aed')), cur);
+      });
+      var btn = document.getElementById('cur-btn');
+      if (btn) btn.textContent = cur + ' \u25be';
+      document.querySelectorAll('.cur-opt').forEach(function(o) {
+        o.style.fontWeight = o.dataset.c === cur ? '600' : '300';
+      });
+    }
+    function build() {
+      var s = document.createElement('style');
+      s.textContent = '.cur-sw{position:fixed;bottom:24px;right:24px;z-index:999;font-family:\'Manrope\',sans-serif}' +
+        '#cur-btn{background:var(--charcoal);color:var(--off-white);border:none;border-radius:100px;padding:10px 20px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s}' +
+        '#cur-btn:hover{background:var(--sage-dark)}' +
+        '.cur-dd{display:none;position:absolute;bottom:calc(100% + 8px);right:0;background:var(--off-white);border:1px solid rgba(30,30,30,.08);border-radius:12px;padding:8px;min-width:120px;box-shadow:0 16px 48px rgba(30,30,30,.1)}' +
+        '.cur-dd.open{display:block}' +
+        '.cur-opt{display:block;width:100%;text-align:left;background:none;border:none;padding:9px 14px;font-size:12px;font-weight:300;color:var(--charcoal);cursor:pointer;border-radius:7px;font-family:\'Manrope\',sans-serif;transition:background .15s}' +
+        '.cur-opt:hover{background:var(--warm-neutral)}';
+      document.head.appendChild(s);
+      var wrap = document.createElement('div'); wrap.className = 'cur-sw';
+      var btn = document.createElement('button'); btn.id = 'cur-btn'; btn.textContent = 'AED \u25be';
+      var dd = document.createElement('div'); dd.className = 'cur-dd';
+      Object.keys(RATES).forEach(function(c) {
+        var o = document.createElement('button'); o.className = 'cur-opt'; o.dataset.c = c; o.textContent = c;
+        o.addEventListener('click', function() { updateAll(c); dd.classList.remove('open'); });
+        dd.appendChild(o);
+      });
+      btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+      document.addEventListener('click', function() { dd.classList.remove('open'); });
+      wrap.appendChild(dd); wrap.appendChild(btn); document.body.appendChild(wrap);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      build();
+      fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
+        updateAll(COUNTRY_MAP[d.country_code] || 'AED');
+      }).catch(function(){ updateAll('AED'); });
+    });
+  })();
+  /* ── END CURRENCY SWITCHER ── */
+  </script>
+
 </body>
 </html>
