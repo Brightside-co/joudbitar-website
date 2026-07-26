@@ -324,8 +324,7 @@
   <div class="curve-divide" style="background:var(--off-white);">
     <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,64 C360,0 1080,0 1440,64 L1440,64 L0,64 Z" fill="#F1E8E2"/></svg>
   </div>
-
-  <!-- ways to work -->
+<!-- ways to work -->
   <section class="section-warm">
     <div class="container">
       <div class="section-header fade-in">
@@ -336,7 +335,7 @@
       <div class="compare-grid fade-in">
         <div class="compare-card highlight">
           <h3>Group Programs</h3>
-          <p class="compare-price" data-aed="840">AED 840</p>
+          <p class="compare-price" data-aed="840" data-suffix="+">AED 840+</p>
           <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">Structured cohort-based or self-paced programs delivering the full Mindful framework with group accountability and live sessions with Joud.</p>
           <ul class="dot-list">
             <li>5-week structured program</li>
@@ -349,7 +348,7 @@
         </div>
         <div class="compare-card">
           <h3>1:1 Coaching</h3>
-          <p class="compare-price" data-aed="670">AED 670 / session</p>
+          <p class="compare-price" data-aed="670" data-suffix=" / session">AED 670 / session</p>
           <p style="font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">Personalised guidance tailored to your individual physiology, lifestyle, and goals. Deeper assessment and ongoing oversight.</p>
           <ul class="dot-list">
             <li>Individual intake assessment</li>
@@ -555,8 +554,8 @@
     }
     function updateAll(cur) {
       document.querySelectorAll('[data-aed]').forEach(function(el) {
-        el.textContent = fmt(parseFloat(el.getAttribute('data-aed')), cur);
-      });
+      var suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = fmt(parseFloat(el.getAttribute('data-aed')), cur) + suffix;      });
       var btn = document.getElementById('cur-btn');
       if (btn) btn.textContent = cur + ' \u25be';
       document.querySelectorAll('.cur-opt').forEach(function(o) {
