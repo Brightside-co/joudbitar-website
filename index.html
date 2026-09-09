@@ -798,63 +798,6 @@
     }
     .social-icon:hover { border-color: var(--sage); color: var(--sage); background: rgba(175,199,174,0.08); }
 
-    /* ══════════ TEMP POPUP — REMOVE AFTER JUNE 14 ══════════ */
-    .promo-overlay {
-      position: fixed; inset: 0; background: rgba(30,30,30,0.55);
-      z-index: 200; display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      animation: fadeOverlay 0.4s ease;
-    }
-    @keyframes fadeOverlay { from { opacity: 0; } to { opacity: 1; } }
-    .promo-popup {
-      background: var(--off-white); border-radius: 20px;
-      max-width: 480px; width: 100%; padding: 48px 44px;
-      position: relative; text-align: center;
-      animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
-    }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .promo-popup-eyebrow {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--sage-dark); margin-bottom: 16px; display: block;
-    }
-    .promo-popup h2 {
-      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
-      line-height: 1.1; margin-bottom: 12px; color: var(--charcoal);
-    }
-    .promo-popup h2 em { font-style: italic; color: var(--sage-dark); }
-    .promo-popup p {
-      font-size: 13.5px; font-weight: 300; color: var(--text-muted);
-      line-height: 1.8; margin-bottom: 28px;
-    }
-    .promo-popup-dates {
-      display: inline-block; background: var(--warm-neutral);
-      border-radius: 100px; padding: 8px 20px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--charcoal);
-      margin-bottom: 28px;
-    }
-    .promo-popup-cta {
-      display: block; font-family: 'Manrope', sans-serif;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--off-white); background: var(--charcoal);
-      padding: 14px 36px; border-radius: 100px; text-decoration: none;
-      transition: background 0.3s; margin-bottom: 14px;
-    }
-    .promo-popup-cta:hover { background: var(--sage-dark); }
-    .promo-popup-dismiss {
-      display: block; font-size: 11px; font-weight: 400; color: var(--text-soft);
-      cursor: pointer; background: none; border: none; font-family: 'Manrope', sans-serif;
-      letter-spacing: 0.05em; transition: color 0.2s; margin: 0 auto;
-    }
-    .promo-popup-dismiss:hover { color: var(--charcoal); }
-    .promo-popup-close {
-      position: absolute; top: 16px; right: 16px;
-      background: none; border: none; font-size: 20px; cursor: pointer;
-      color: var(--text-soft); line-height: 1; padding: 4px 8px;
-    }
-    .promo-popup-close:hover { color: var(--charcoal); }
-    /* ══════════ END TEMP POPUP ══════════ */
-
     /* ══════════ MOBILE NAV ══════════ */
     .mobile-nav {
       display: none; position: fixed; inset: 0; background: var(--off-white); z-index: 99;
@@ -953,20 +896,6 @@
       </button>
     </div>
   </nav>
-
-  <!-- ═══ TEMP POPUP ═══ -->
-  <div class="promo-overlay" id="promoOverlay">
-    <div class="promo-popup">
-      <button class="promo-popup-close" onclick="closePromo()" aria-label="Close">×</button>
-      <span class="promo-popup-eyebrow">🌿 Limited Spots</span>
-      <h2>5-Week Mindful<br>Eating <em>Group Program</em></h2>      <div class="promo-popup-dates">Open Now!</div>
-      <p>A focused five-week program to reset your eating habits, sync with your natural cycle, and build a healthier relationship with food that lasts.</p>
-      <p>Starts September 7th 2026.</p>
-      <a href="https://form.jotform.com/253372371409053" target="_blank" class="promo-popup-cta">Register Now</a>
-      <button class="promo-popup-dismiss" onclick="closePromo()">No thanks, continue to site</button>
-    </div>
-  </div>
-  <!-- ═══ END TEMP POPUP ═══ -->
 
   <!-- MOBILE NAV -->
   <div class="mobile-nav" id="mobileNav">
@@ -1574,20 +1503,6 @@
     // Init
     render(0);
     resetAuto();
-  // ═══ TEMP POPUP — DELETE AFTER JUNE 14 ═══
-  function closePromo() {
-    document.getElementById('promoOverlay').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  // Show popup on load, lock scroll behind it
-  window.addEventListener('load', () => {
-    document.body.style.overflow = 'hidden';
-  });
-  // Close on overlay click (outside popup)
-  document.getElementById('promoOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closePromo();
-  });
-  // ═══ END TEMP POPUP ═══
   </script>
 </body>
 </html>
