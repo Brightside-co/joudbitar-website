@@ -101,6 +101,11 @@
     .pricing-card.featured .pricing-sub{color:rgba(250,247,250,.5)}
     .pricing-divider{height:1px;background:var(--border);margin:20px 0}
     .pricing-card.featured .pricing-divider{background:rgba(250,247,250,.12)}
+    .pricing-card{display:flex;flex-direction:column}
+    .pricing-card .dot-list{margin-bottom:32px}
+    .pricing-cta{margin-top:auto;align-self:flex-start;text-align:center}
+    .pricing-cta::after{content:'';position:absolute;inset:0;border-radius:18px}
+    .pricing-cta:focus-visible{outline:2px solid var(--sage-dark);outline-offset:3px}
     /* FAQ */
     .faq-list{display:flex;flex-direction:column;gap:0}
     .faq-item{border-bottom:1px solid var(--border)}
@@ -377,6 +382,7 @@
             <li>Initial nutrition and lifestyle assessment</li>
             <li>Personalised first recommendations</li>
           </ul>
+          <a href="https://form.jotform.com/260745374786066" target="_blank" rel="noopener" class="btn-primary pricing-cta">Submit Intake Form</a>
         </div>
         <div class="pricing-card featured">
           <p class="pricing-tag">Post Deep Dive</p>
@@ -389,6 +395,7 @@
             <li style="color:rgba(250,247,250,.7);">Progress review and adjustments</li>
             <li style="color:rgba(250,247,250,.7);">Ongoing direct access</li>
           </ul>
+          <a href="https://buy.stripe.com/fZu4gt5Lj2hw14w9NI0Ba01" target="_blank" rel="noopener" class="btn-sage pricing-cta">Purchase Package 1</a>
         </div>
       </div>
     </div>
